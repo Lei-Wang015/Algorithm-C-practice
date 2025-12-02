@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+    //1. 用字符串存储输入整数（兼容正负号和长数字，避免类型限制）；
+    char *pinyin[] = {"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
+    char nums[1001];
+    scanf("%s", nums);
+    int first = 1;
+    //2. 建立0-9与对应拼音的映射数组（直接通过数字索引取拼音，高效）；
+    for(int i = 0; nums[i] != '\0';i++){
+            if(nums[i] == '-'){
+                if(first){
+                    printf("fu");
+                    first = 0;
+                }
+                else{
+                    printf(" fu");
+                }
+            }
+        else{
+            int digit = nums[i] - '0';
+            if(first){
+                printf("%s",pinyin[digit]);
+                first = 0;
+            }else{//别把else携程esle
+                printf(" %s",pinyin[digit]);
+            }
+        }
+    }
+    printf("\n");
+    //3. 遍历字符串逐个处理字符：
+   //- 遇负号输出“fu”；
+   //- 遇数字则转成整数（字符-‘0’），取映射数组中的对应拼音；
+    //4. 控制空格输出（仅在非第一个内容前加空格，避免首尾空格）。
+    return 0;
+}
