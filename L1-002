@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+    //确定最大沙漏的 “规模”m,沙漏的总符号数满足公式：总符号数 = 2*m² - 1;
+    int num = 0,m = 0;
+    //用char型定义字符；
+    char ch;
+    scanf("%d %c", &num,&ch);
+    // 准确找到最大的m（满足2*m²-1 ≤ num）
+    while (2 * (m + 1) * (m + 1) - 1 <= num) {
+        m++;
+    }
+    //c语言需要用嵌套循环实现重复打印；
+    for(int i = m;i > 0;i--){
+        for(int j = 0;j < m - i;j++){
+            printf(" ");
+        }
+        for(int j = 0;j < 2 * i - 1;j++){
+            printf("%c",ch);
+        }
+        //每行末尾没有打空格的必要；
+        printf("\n");
+    }
+    //从i= 2开始，到i = m结束；
+    for(int i = 2;i <= m;i++){
+        for(int j = 0;j < m - i;j++){
+            printf(" ");
+        }
+        for(int j = 0;j < 2 * i - 1;j++){
+            printf("%c",ch);
+        }
+        printf("\n");
+    }   
+    
+    printf("%d\n", num - 2 * m * m +1);
+    return 0;
+}
+
+
