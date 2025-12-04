@@ -1,0 +1,24 @@
+# 读取输入的字符串A（第一行，包含空格等所有字符，input()自动忽略末尾换行）
+a = input()
+# 读取输入的字符串B（第二行）
+b = input()
+# 将B转为集合：集合的「成员判断」是O(1)时间，比列表遍历快很多
+b_chars = set(b)
+# 遍历A的每个字符，只保留不在B中的字符，拼接成结果
+result =''.join(char for char in a if char not in b_chars)
+# 输出最终结果
+print(result)
+
+## Q:join是什么用法
+python字符串的内置用法，将可迭代对象（list，tuple，string，iterable）里的字符串元素，用户调用join的字符串作为分隔符，拼接成一个新字符串
+分隔字符串。join（可迭代对象）
+# 用逗号分隔拼接
+print(','.join(['a', 'b', 'c']))  # 输出：a,b,c
+# 用空字符串拼接（无缝）
+print(''.join(['a', 'b', 'c']))   # 输出：abc
+# 用横线分隔拼接
+print('-'.join(['x', 'y']))       # 输出：x-y
+
+## Q:为什么b要转为集合
+集合的判断效率远高于字符串/列表
+
