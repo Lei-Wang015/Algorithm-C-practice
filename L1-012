@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <math.h>
+int main(){
+    int num = 0;
+    scanf("%d", &num);
+    printf("2^%d = %d",num,(int)pow(2,num));
+    //pow输出的是浮点数
+    return 0;
+}
+
+这么个题做半天。。。。。
+
+#include <stdio.h>
+
+int power_of_two(int a);
+
+int main(){
+    int num = 0;
+    scanf("%d", &num);
+    printf("2^%d = %d",num,power_of_two(num));
+    return 0;
+}
+
+int power_of_two(int a){
+    int b = 1;
+    while(a > 0){
+        b *= 2;
+        a--;
+    }
+    return b;//不要误把返回值写进循环里
+}
