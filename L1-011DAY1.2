@@ -22,3 +22,14 @@ print('-'.join(['x', 'y']))       # 输出：x-y
 ## Q:为什么b要转为集合
 集合的判断效率远高于字符串/列表
 
+# 读取输入的字符串A（第一行，包含空格等所有字符，input()自动忽略末尾换行）
+# 读取输入的字符串B（第二行）
+# 将B转为集合：集合的「成员判断」是O(1)时间，比列表遍历快很多
+# 遍历A的每个字符，只保留不在B中的字符，拼接成结果
+# 输出最终结果
+a = input()
+b = input()
+chars_in_b = set(b)
+result = ''.join(char for char in a if char not in chars_in_b)
+#别忘了for
+print(result)
