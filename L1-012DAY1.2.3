@@ -29,3 +29,23 @@ int power_of_two(int a){
     }
     return b;//不要误把返回值写进循环里
 }
+
+
+#include <stdio.h>
+
+int power_of_two(int a);
+
+int main() {
+    int num = 0;
+    scanf("%d", &num);
+    printf("2^%d = %d",num, power_of_two(num));
+}
+
+int power_of_two(int a){
+    int b = 1;
+    while(a > 0){
+        b *= 2;
+        a--;
+    }
+    return b;
+}
