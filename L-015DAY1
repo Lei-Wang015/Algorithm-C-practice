@@ -1,0 +1,65 @@
+# 读取输入行：输入格式为“边长N 字符c”，按空格拆分为两部分
+put_chars = input().split()
+# 提取正方形的列数（每行要输出的字符数量），转换为整数
+col_count = int(put_chars[0])
+# 提取用于组成方块的字符
+char = put_chars[1]
+
+# 计算输出的行数：题目要求行数是列数的50%（四舍五入取整）
+#Python 的round()函数采用 “银行家舍入法”（四舍六入五成双）
+#即当数值的小数部分为0.5时，会舍入到最近的偶数。例如：
+#round(2.5) = 2（不符合传统四舍五入，传统应是 3）
+#此处改用传统四舍五入向上取整
+row_count = int(col_count * 0.5 + 0.5)
+
+# 循环row_count次，每次输出一行由col_count个char组成的字符串
+for _ in range(row_count):
+    print(char * col_count)
+
+### 1. `split` 是什么？  
+`split` 将一个字符串按照指定的“分隔符”拆分成多个子字符串，并返回一个包含这些子字符串的列表（或数组）  
+- 语法：`字符串.split(分隔符, 最大拆分次数)`（分隔符默认是空格，最大拆分次数可选）  
+- 例子：  
+  ```python
+  s = "apple,banana,orange"
+  result = s.split(",")  # 按逗号分隔
+  print(result)  # 输出：['apple', 'banana', 'orange']
+  ```  
+### 2. `round` 是什么？  
+`round` 是用于数值取整（四舍五入）的函数，通常用于处理浮点数，返回一个指定精度的数值。  
+- 语法：`round(数值, 保留的小数位数)`（保留的小数位数默认是 0，即取整数）  
+- 例子：  
+  ```python
+  print(round(3.1415))  # 输出：3（默认保留0位小数，四舍五入取整）
+  print(round(3.1415, 2))  # 输出：3.14（保留2位小数）
+  ``` 
+
+
+#include <stdio.h>
+
+int main() {
+    int col_count = 0;  // 存储正方形的列数（每行的字符数量）
+    char ch; // 存储用于组成方块的字符
+
+    // 读取输入：格式为“整数N 字符c”，空格分隔，scanf自动处理空格
+    // 检查scanf读入是否正确
+    int ret = scanf("%d %c", &col_count, &ch);
+    if(ret != 2){
+        return 1;
+    }
+
+    // 计算输出的行数：列数的50%（四舍五入取整）
+    // (col_count + 1) / 2 是整数除法的四舍五入技巧：
+    // - 偶数col_count（如16）：(16+1)/2=8（整数除法结果）
+    // - 奇数col_count（如3）：(3+1)/2=2（1.5四舍五入为2）
+    int row_count = (int)(col_count * 0.5 + 0.5);
+
+    // 外层循环：控制输出的行数
+    for(int i = 0;i < row_count;i++){
+        for(int j = 0;j < col_count;j++){
+            printf("%c",ch);
+        }
+        printf("\n");
+    }
+    return 0;
+}
